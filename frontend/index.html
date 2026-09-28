@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Arithmetic Expression Evaluator</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         TOP BAR
+    ========================== -->
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-icon">∑</div>
+
+            <div>
+                <h1>Arithmetic Expression Evaluator</h1>
+                <p>Stack-Based Expression Processing</p>
+            </div>
+        </div>
+
+        <div
+            id="apiStatus"
+            class="api-status"
+        >
+            <span class="status-dot"></span>
+            Checking API...
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+
+            <div class="hero-badge">
+                DATA STRUCTURE PROJECT
+            </div>
+
+            <h2>
+                Evaluate Arithmetic Expressions
+            </h2>
+
+            <p>
+                Enter an arithmetic expression, provide values
+                for variables, and evaluate it using
+                <strong>Infix to Postfix conversion</strong>
+                and a <strong>Stack</strong>.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             EXPRESSION CARD
+        ========================== -->
+        <section class="card expression-card">
+
+            <div class="section-title">
+                <div>
+                    <h3>Expression Input</h3>
+                    <p>
+                        Supports numbers, variables,
+                        operators and parentheses.
+                    </p>
+                </div>
+            </div>
+
+
+            <label
+                for="expressionInput"
+                class="input-label"
+            >
+                Arithmetic Expression
+            </label>
+
+            <div class="expression-row">
+
+                <input
+                    id="expressionInput"
+                    type="text"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="Example: (x + y) * 2"
+                >
+
+                <button
+                    id="evaluateButton"
+                    class="primary-button"
+                    type="button"
+                >
+                    <span id="buttonText">
+                        Evaluate
+                    </span>
+                </button>
+
+            </div>
+
+
+            <!-- EXAMPLES -->
+            <div class="examples-section">
+
+                <div class="examples-title">
+                    Try an example
+                </div>
+
+                <div class="examples">
+
+                    <button
+                        class="example-button"
+                        data-expression="10 + 5"
+                        data-variables="{}"
+                    >
+                        10 + 5
+                    </button>
+
+                    <button
+                        class="example-button"
+                        data-expression="10 + 5 * 2"
+                        data-variables="{}"
+                    >
+                        10 + 5 × 2
+                    </button>
+
+                    <button
+                        class="example-button"
+                        data-expression="(10 + 5) * 3"
+                        data-variables="{}"
+                    >
+                        (10 + 5) × 3
+                    </button>
+
+                    <button
+                        class="example-button"
+                        data-expression="(10 + 5) * 3 - 8 / 2"
+                        data-variables="{}"
+                    >
+                        Combined
+                    </button>
+
+                    <button
+                        class="example-button variable-example"
+                        data-expression="(x + y) * 2"
+                        data-variables='{"x":10,"y":5}'
+                    >
+                        (x + y) × 2
+                    </button>
+
+                    <button
+                        class="example-button variable-example"
+                        data-expression="2 * x + 5"
+                        data-variables='{"x":5}'
+                    >
+                        2 × x + 5
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             VARIABLE INPUT
+        ========================== -->
+        <section
+            id="variablesCard"
+            class="card variables-card hidden"
+        >
+
+            <div class="section-title">
+
+                <div>
+                    <h3>Variable Values</h3>
+
+                    <p>
+                        Enter a numeric value for each
+                        variable detected in the expression.
+                    </p>
+                </div>
+
+                <div class="variable-badge">
+                    Variables
+                </div>
+
+            </div>
+
+
+            <div
+                id="variablesContainer"
+                class="variables-container"
+            >
+                <!-- JavaScript creates variable inputs here -->
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ERROR
+        ========================== -->
+        <div
+            id="errorBox"
+            class="error-box hidden"
+        >
+            <div class="error-icon">!</div>
+
+            <div>
+                <strong>Evaluation Error</strong>
+
+                <p id="errorMessage">
+                    Something went wrong.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- =========================
+             RESULT
+        ========================== -->
+        <section
+            id="resultSection"
+            class="result-section hidden"
+        >
+
+            <div class="result-card">
+
+                <div class="result-header">
+                    <div>
+                        <span class="result-label">
+                            FINAL RESULT
+                        </span>
+
+                        <h2 id="resultValue">
+                            -
+                        </h2>
+                    </div>
+
+                    <div class="success-icon">
+                        ✓
+                    </div>
+                </div>
+
+
+                <div class="result-expression">
+
+                    <span>Expression</span>
+
+                    <code id="resultExpression">
+                        -
+                    </code>
+
+                </div>
+
+
+                <div
+                    id="resultVariables"
+                    class="result-variables hidden"
+                >
+
+                    <span>Variables</span>
+
+                    <div
+                        id="resultVariablesList"
+                        class="result-variable-list"
+                    >
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPLEXITY -->
+            <div class="complexity-grid">
+
+                <div class="complexity-card">
+
+                    <div class="complexity-icon">
+                        ⏱
+                    </div>
+
+                    <div>
+                        <span>
+                            TIME COMPLEXITY
+                        </span>
+
+                        <strong id="timeComplexity">
+                            O(n)
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="complexity-card">
+
+                    <div class="complexity-icon">
+                        ◈
+                    </div>
+
+                    <div>
+                        <span>
+                            SPACE COMPLEXITY
+                        </span>
+
+                        <strong id="spaceComplexity">
+                            O(n)
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOKENS -->
+            <div class="card output-card">
+
+                <div class="output-heading">
+                    <h3>Tokens</h3>
+
+                    <span class="output-description">
+                        Expression tokens
+                    </span>
+                </div>
+
+                <div
+                    id="tokensContainer"
+                    class="tokens-container"
+                >
+                </div>
+
+            </div>
+
+
+            <!-- INFIX / POSTFIX -->
+            <div class="conversion-grid">
+
+                <div class="card output-card">
+
+                    <div class="output-heading">
+                        <h3>Infix Expression</h3>
+
+                        <span>
+                            Input
+                        </span>
+                    </div>
+
+                    <div
+                        id="infixOutput"
+                        class="code-output"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="card output-card">
+
+                    <div class="output-heading">
+                        <h3>Postfix Expression</h3>
+
+                        <span>
+                            Stack conversion
+                        </span>
+                    </div>
+
+                    <div
+                        id="postfixOutput"
+                        class="code-output"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STACK STEPS -->
+            <div class="card output-card">
+
+                <div class="output-heading">
+
+                    <div>
+                        <h3>Stack Evaluation Steps</h3>
+
+                        <p>
+                            Step-by-step evaluation
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Step</th>
+                                <th>Token</th>
+                                <th>Operation</th>
+                                <th>Stack</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="stepsTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- PSEUDOCODE -->
+            <div class="card output-card">
+
+                <div class="output-heading">
+
+                    <div>
+                        <h3>Pseudocode</h3>
+
+                        <p>
+                            Algorithm used by the evaluator
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    id="pseudocodeContainer"
+                    class="pseudocode"
+                >
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WELCOME / INFO
+        ========================== -->
+        <section class="info-grid">
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    01
+                </div>
+
+                <h3>Enter Expression</h3>
+
+                <p>
+                    Enter numbers or variables such as
+                    <code>(x + y) * 2</code>.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    02
+                </div>
+
+                <h3>Assign Values</h3>
+
+                <p>
+                    When variables are detected, enter
+                    their numeric values.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+                    03
+                </div>
+
+                <h3>Evaluate</h3>
+
+                <p>
+                    The expression is converted to postfix
+                    and evaluated using a stack.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
+
+        <p>
+            Evaluating Arithmetic Expressions
+        </p>
+
+        <span>
+            Infix → Postfix → Stack Evaluation
+        </span>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test/cache files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Local environment variables
+.env
+
+# Uploaded/generated temporary files
+uploads/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Local server/cache files
+*.sqlite3
+
+# Ignore generated cache models
+*.pt
+*.pth
+*.onnx
