@@ -919,3 +919,382 @@ footer span {
     }
 
 }
+/* =========================================================
+   MOBILE WEBSITE FIX
+   ========================================================= */
+
+.expression-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+#evaluateButton {
+    border: none;
+    border-radius: 13px;
+    padding: 0 25px;
+    min-height: 52px;
+    background: linear-gradient(
+        135deg,
+        var(--accent),
+        var(--accent-2)
+    );
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+#evaluateButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.18);
+}
+
+#evaluateButton:disabled {
+    opacity: 0.65;
+    cursor: wait;
+}
+
+.examples-section {
+    margin-top: 18px;
+}
+
+.examples-title {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.example-button {
+    border: 1px solid var(--border);
+    background: #0a101c;
+    color: #cbd5e1;
+    padding: 8px 11px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.example-button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tokens-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.code-output {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #080d17;
+    color: var(--accent);
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.success-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(52, 211, 153, 0.12);
+    color: var(--success);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.result-variable-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.result-variable-item {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 9px;
+    background: #090f1b;
+    border: 1px solid var(--border);
+}
+
+.variables-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.variable-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 150px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: #090f1b;
+    border: 1px solid var(--border);
+}
+
+.variable-name {
+    color: var(--accent);
+    font-family: "Consolas", monospace;
+    font-weight: 800;
+}
+
+.variable-optional {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.output-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.output-heading h3 {
+    font-size: 17px;
+}
+
+.output-heading p,
+.output-description {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Better touch targets */
+button,
+input {
+    min-height: 44px;
+}
+
+@media (max-width: 800px) {
+
+    .topbar {
+        padding: 12px 4%;
+    }
+
+    .brand {
+        min-width: 0;
+    }
+
+    .brand h1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .container {
+        width: 92%;
+        padding: 32px 0 50px;
+    }
+
+    .hero {
+        margin-bottom: 22px;
+    }
+
+    .hero h2 {
+        font-size: clamp(30px, 8vw, 42px);
+        letter-spacing: -1.5px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .expression-row {
+        flex-direction: column;
+    }
+
+    #expressionInput {
+        width: 100%;
+        min-height: 52px;
+        font-size: 16px;
+    }
+
+    #evaluateButton {
+        width: 100%;
+        min-height: 52px;
+    }
+
+    .examples {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+    }
+
+    .example-button {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    .section-title {
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .conversion-grid,
+    .complexity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .result-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .result-value {
+        font-size: clamp(48px, 14vw, 70px);
+        word-break: break-word;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    .pseudo-line {
+        font-size: 12px;
+        overflow-x: auto;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .topbar {
+        position: relative;
+        padding: 12px 4%;
+    }
+
+    .brand {
+        gap: 9px;
+    }
+
+    .brand-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 11px;
+        font-size: 20px;
+    }
+
+    .brand h1 {
+        font-size: 13px;
+    }
+
+    .brand p {
+        font-size: 9px;
+    }
+
+    .container {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        flex-direction: column;
+    }
+
+    .section-title h3 {
+        font-size: 16px;
+    }
+
+    .section-title p {
+        font-size: 11px;
+    }
+
+    .examples {
+        grid-template-columns: 1fr;
+    }
+
+    .example-button {
+        text-align: center;
+    }
+
+    .complexity-card {
+        padding: 15px;
+    }
+
+    .output-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .code-output {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .token {
+        min-width: 34px;
+        padding: 8px 10px;
+    }
+
+    .result-card {
+        padding: 25px 12px;
+    }
+
+    .result-expression {
+        font-size: 12px;
+    }
+
+    .variable-symbol {
+        width: 100%;
+        min-width: 0;
+    }
+
+    footer {
+        padding: 20px 12px;
+    }
+}
