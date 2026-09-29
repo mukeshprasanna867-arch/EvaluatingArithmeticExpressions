@@ -1,5 +1,4 @@
-const API_BASE = "http://127.0.0.1:8000";
-
+const API_BASE = "https://evaluatingarithmeticexpressions.onrender.com";
 const expressionInput = document.getElementById("expressionInput");
 const evaluateButton = document.getElementById("evaluateButton");
 const buttonText = document.getElementById("buttonText");
